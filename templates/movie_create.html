@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie add</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            background-color:rgb(225, 127, 255);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 100px;
+            height: 100vh;
+        }
+
+        .from {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .from_control {
+            margin: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgb(46, 14, 14);
+        }
+
+        .banner {
+            width: 250px;
+            padding-left: 50px;
+            color: white;
+        }
+
+        .yuborish {
+            text-align: center;
+        }
+
+        input {
+            width: 200px;
+            height: 30px;
+        }
+
+        .btn {
+            margin: auto;
+            width: 100px;
+            height: 30px;
+            background-color: #1d1f20;
+            color: white;
+        }
+
+        .kino_tur {
+            color: white;
+            background-color: #1d1f20;
+        }
+
+        .from_text {
+            color: rgba(26, 25, 25, 0.918);
+            font-size: 24px;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form class="from"  method="post">
+            {% csrf_token %}
+
+            <p class="from_text">Yangi kino yaratish</p>
+
+            <label class="from_control" for="title">
+                <p>Nomi</p>
+                <input type="str" name="title" id="title" value={{data.title}}>
+            </label>
+            {% if errors.title %}<small>{{errors.title}}</small> {% endif %}
+
+            <label class="from_control" for="released_year">
+                <p>Yili</p>
+                <input type="int" name="released_year" id="released_year" value={{data.relesed_year}}>
+            </label>
+
+            <label class="from_control" for="language">
+                <p>Tili</p>
+                <input type="text" name="language" value={{data.language}}>
+            </label>
+
+            <label class="from_control" for="duration">
+                <p>Davomiyligi</p>
+                <input type="str" name="duration" id="duration" value={{data.duration}}>
+            </label>
+            
+
+            <label class="from_control" for="source_link">Link
+                <input type="text"  name="source_link" {{data.sourse_link}}>
+            </label>
+            {% if errors.source_link %}<small>{{errors.source_link}}</small> {% endif %}
+
+            <label class="from_control" for="type">
+                <p>Type</p>
+                <select class="kino_tur" name="type" required>
+                    <option value="MOVIE">Kinofilm</option>
+                    <option value="TRAILE">Treyler</option>
+                    <option value="SHOW">Konsert</option>
+                    <option value="SERIES">Serial</option>
+                </select>
+            </label>
+            {% if errors.type %}<small>{{errors.type}}</small> {% endif %}
+
+            <label class="from_control" for="banner">
+                <p>Banner</p>
+                <input class="banner" type="file" name="banner" value={{data.banner}}>
+            </label>
+            {% if errors.banner %}<small>{{errors.banner}}</small> {% endif %}
+
+            <label class="from_control" for="slug">
+                <p>Slug</p>
+                <input type="text" name="slug" value={{data.slug}}>
+            </label>
+            {% if errors.slug %}<small>{{errors.slug}}</small> {% endif %}
+
+            <input class="btn" type="submit" value="Yuborish">
+
+        </form>
+    </div>
+
+    </div>
+
+
+
+
+
+</body>
+
+</html>
